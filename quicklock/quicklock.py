@@ -3,9 +3,9 @@ import re
 import json
 import psutil
 import logging
-import traceback
 
 log = logging.getLogger('quicklock')
+
 
 def singleton(resource, dirname='.lock'):
     """
