@@ -44,10 +44,10 @@ def singleton(resource, dirname='.lock'):
 
         # Resource was locked
         if locked:
-            raise RuntimeError('Resource <{}> is currently locked by <Process {}: "{}">'.format(resource, other_process.pid, other_process.name()))
+            raise RuntimeError('Resource <{0}> is currently locked by <Process {1}: "{2}">'.format(resource, other_process.pid, other_process.name()))
 
     # Create the lock with the current process information
     process = psutil.Process(os.getpid())
     with open(lock_file, 'w') as lock_handle:
         json.dump({"name": process.name(), "pid": process.pid}, lock_handle)
-        log.info('Obtained exclusive lock on resource <{}> (this is <Process {}: "{}">)'.format(resource, process.pid, process.name()))
+        log.info('Obtained exclusive lock on resource <{0}> (this is <Process {1}: "{2}">)'.format(resource, process.pid, process.name()))
